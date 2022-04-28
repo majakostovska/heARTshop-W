@@ -1,0 +1,32 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading" style="letter-spacing: 55px;
+    text-transform: uppercase;">heARTshop</h1>
+        </div>
+    </section>
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-12" th:if="${artists.size() > 0}">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr style="text-align: center; font-family: Calibri;text-transform: uppercase;">
+                            <th scope="col">Artist name</th>
+                            <th scope="col">Address</th>
+                        </tr>
+                        </thead>
+                        <tbody style="text-transform: uppercase;color: lightslategray;
+    font-family: fangsong; text-align: center;">
+                        <tr th:each="artist : ${artists}" class="artists" style="text-transform: uppercase;color: lightslategray;
+    font-family: fangsong;">
+                            <td th:text="${artist.getName()}"></td>
+                            <td th:text="${artist.getAddress()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

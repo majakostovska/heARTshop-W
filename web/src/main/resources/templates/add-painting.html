@@ -1,0 +1,84 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading" style="letter-spacing: 55px;
+    text-transform: uppercase;">heART shop</h1>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <form action="/paintings/add" method="POST">
+                    <input id="id" type="hidden" name="id" th:value="(${paintings} != null ? ${paintings.getId()} : '')">
+                    <div class="form-group">
+                        <label for="name">Painting name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="name"
+                               name="name"
+                               th:value="(${paintings} != null ? ${paintings.getName()} : '')"
+                               required
+                               placeholder="Enter product name">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="text"
+                               class="form-control"
+                               id="price"
+                               name="price"
+                               th:value="(${paintings} != null ? ${paintings.getPrice()} : '')"
+                               placeholder="Price">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="text"
+                               class="form-control"
+                               id="quantity"
+                               name="quantity"
+                               th:value="(${paintings} != null ? ${paintings.getQuantity()} : '')"
+                               placeholder="Quantity">
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select name="category" class="form-control">
+                            <option th:if="${paintings} != null"
+                                    th:selected="${paintings.getCategory() != null &&
+                                paintings.getCategory().getId() == cat.getId()}"
+                                    th:each="cat : ${categories}"
+                                    th:value="${cat.getId()}"
+                                    th:text="${cat.getName()}">
+                            </option>
+                            <option th:if="${paintings} == null"
+                                    th:each="cat : ${categories}"
+                                    th:value="${cat.getId()}"
+                                    th:text="${cat.getName()}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Artists</label>
+                        <select name="artist" class="form-control">
+                            <option th:if="${paintings} != null"
+                                    th:selected="${paintings.getArtist() != null && paintings.getArtist().getId() == art.getId()}"
+                                    th:each="art : ${artists}"
+                                    th:value="${art.getId()}"
+                                    th:text="${art.getName()}">
+                            </option>
+                            <option th:if="${paintings} == null"
+                                    th:each="art : ${artists}"
+                                    th:value="${art.getId()}"
+                                    th:text="${art.getName()}">
+                            </option>
+                        </select>
+                    </div>
+                    <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                    <a type="button" class="btn btn-primary" href="/paintings">Back</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</th:block>
